@@ -1,0 +1,115 @@
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    string song;
+    Node* next;
+};
+
+Node* head = NULL;
+
+// Add song
+void addSong(string name) {
+    Node* newNode = new Node{name, NULL};
+    if (head == NULL) head = newNode;
+    else {
+        Node* temp = head;
+        while (temp->next != NULL) temp = temp->next;
+        temp->next = newNode;
+    }
+}
+
+// Display songs
+void display() {
+    Node* temp = head;
+    while (temp != NULL) {
+        cout << temp->song << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL\n";
+}
+
+// Delete song
+void deleteSong(string name) {
+    Node *temp = head, *prev = NULL;
+    while (temp != NULL && temp->song != name) {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL) cout << "Song not found\n";
+    else {
+        if (prev == NULL) head = temp->next;
+        else prev->next = temp->next;
+        delete temp;
+        cout << "Song deleted\n";
+    }
+}
+
+// Search song
+void searchSong(string name) {
+    Node* temp = head;
+    while (temp != NULL) {
+        if (temp->song == name) {
+            cout << "Song found\n";
+            return;
+        }
+        temp = temp->next;
+    }
+    cout << "Song not found\n";
+}
+
+// Reverse playlist
+void reverse() {
+    Node *prev = NULL, *curr = head, *next = NULL;
+    while (curr != NULL) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    head = prev;
+}
+
+int main() {
+    int choice;
+    string name;
+
+    do {
+        cout << "\n1.Add  2.Delete  3.Search  4.Reverse  5.Display  6.Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter song name: ";
+                cin >> name;
+                addSong(name);
+                break;
+            case 2:
+                cout << "Enter song to delete: ";
+                cin >> name;
+                deleteSong(name);
+                break;
+            case 3:
+                cout << "Enter song to search: ";
+                cin >> name;
+                searchSong(name);
+                break;
+            case 4:
+                reverse();
+                cout << "Playlist reversed\n";
+                break;
+            case 5:
+                display();
+                break;
+            case 6:
+                cout << "Exiting...";
+                break;
+            default:
+                cout << "Invalid choice\n";
+        }
+    } while (choice != 6);
+
+    return 0;
+}
