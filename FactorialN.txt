@@ -1,0 +1,33 @@
+
+#include <iostream>
+using namespace std;
+
+// Recursive function
+int factorial(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+
+    return n * factorial(n - 1);
+}
+
+// Non-recursive function
+int factorialIterative(int n) {
+    int fact = 1;
+
+    for (int i = 1; i <= n; i++) {
+        fact = fact * i;
+    }
+
+    return fact;
+}
+
+int main() {
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+
+    cout << "Factorial using Recursion: " << factorial(n) << endl;
+    cout << "Factorial without Recursion: " << factorialIterative(n);
+
+    return 0;
+}

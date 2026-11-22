@@ -1,0 +1,50 @@
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main() {
+    stack<string> undo, redo;
+    string text = "", action;
+
+    int choice;
+    do {
+        cout << "\n1. Type Text\n2. Undo\n3. Redo\n4. Display\n5. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cout << "Enter text: ";
+                cin >> action;
+                undo.push(text);
+                text += action;
+                while(!redo.empty()) redo.pop();
+                break;
+
+            case 2:
+                if(!undo.empty()) {
+                    redo.push(text);
+                    text = undo.top();
+                    undo.pop();
+                }
+                else cout << "Nothing to Undo\n";
+                break;
+
+            case 3:
+                if(!redo.empty()) {
+                    undo.push(text);
+                    text = redo.top();
+                    redo.pop();
+                }
+                else cout << "Nothing to Redo\n";
+                break;
+
+            case 4:
+                cout << "Text: " << text << endl;
+                break;
+        }
+    } while(choice != 5);
+
+    return 0;
+}

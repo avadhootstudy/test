@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+int main(){
+    int num1, num2;
+    int choice;
+    cout<<"Enter number for particular operation\n1. Addition\n2. Subtraction\n3.Multiplication\n4. Division\n5. Modulas\nEnter your operator: ";
+    cin>>choice;
+    cout<<"Enter first num : ";
+    cin>>num1;
+    cout<<"Enter second num : ";
+    cin>>num2;
+
+    switch(choice){
+        case 1 : cout<<"Answer is : ";
+            cout<<num1+num2;
+            break;
+        
+        case 2 : cout<<"Answer is : "; 
+            cout<<num1-num2;
+            break;
+        
+        case 3 : cout<<"Answer is : ";
+            cout<<num1*num2;
+            break;
+        
+        case 4 : cout<<"Answer is : ";
+            cout<<num1/num2;
+            break;
+
+        case 5 : cout<<"Answer is : ";
+            cout<<num1%num2;
+            break;
+
+        default : cout<<"Wrong input.....Please try again.....";
+            break;
+    }
+
+return 0;
+}

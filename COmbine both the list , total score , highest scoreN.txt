@@ -1,0 +1,37 @@
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int list1[5], list2[6], team[11];
+    int total = 0, max;
+
+    cout << "Enter runs of first 5 players: ";
+    for(int i=0; i<5; i++)
+        cin >> list1[i];
+
+    cout << "Enter runs of remaining 6 players: ";
+    for(int i=0; i<6; i++)
+        cin >> list2[i];
+
+    // Combine both lists
+    for(int i=0; i<5; i++)
+        team[i] = list1[i];
+
+    for(int i=0; i<6; i++)
+        team[i+5] = list2[i];
+
+    // Calculate total and highest score
+    max = team[0];
+
+    for(int i=0; i<11; i++) {
+        total += team[i];
+        if(team[i] > max)
+            max = team[i];
+    }
+
+    cout << "Total Team Score: " << total << endl;
+    cout << "Highest Runs: " << max;
+
+    return 0;
+}

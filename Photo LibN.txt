@@ -1,0 +1,57 @@
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    string photo;
+    Node *prev, *next;
+};
+
+int main() {
+    Node *head = NULL, *temp, *current;
+    int n, choice;
+
+    cout << "Enter number of photos: ";
+    cin >> n;
+
+    for(int i = 0; i < n; i++) {
+        temp = new Node;
+        cout << "Enter photo name: ";
+        cin >> temp->photo;
+
+        temp->prev = NULL;
+        temp->next = NULL;
+
+        if(head == NULL) {
+            head = temp;
+            current = head;
+        }
+        else {
+            temp->prev = current;
+            current->next = temp;
+            current = temp;
+        }
+    }
+
+    // Make circular doubly linked list
+    current->next = head;
+    head->prev = current;
+    current = head;
+
+    do {
+        cout << "\nCurrent Photo: " << current->photo;
+        cout << "\n1. Next Photo";
+        cout << "\n2. Previous Photo";
+        cout << "\n3. Exit";
+        cout << "\nEnter choice: ";
+        cin >> choice;
+
+        if(choice == 1)
+            current = current->next;
+        else if(choice == 2)
+            current = current->prev;
+
+    } while(choice != 3);
+
+    return 0;
+}
